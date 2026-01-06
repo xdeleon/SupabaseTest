@@ -1,0 +1,80 @@
+{
+  "source": "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/LoginView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Welcome Back",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign in to continue",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Email",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Password",
+        "location": {
+          "startingColumn": 37,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign In",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "Forgot Password?",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "Don't have an account?",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 115
+        }
+      },
+      {
+        "comment": "",
+        "key": "Create Account",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Resend Verification Email",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 132
+        }
+      }
+    ]
+  },
+  "version": 1
+}

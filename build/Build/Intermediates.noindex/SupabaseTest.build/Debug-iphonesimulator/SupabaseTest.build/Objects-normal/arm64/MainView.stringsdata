@@ -1,0 +1,128 @@
+{
+  "source": "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/MainView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Profile",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 119
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign Out",
+        "location": {
+          "startingColumn": 17,
+          "startingLine": 121
+        }
+      },
+      {
+        "comment": "",
+        "key": "Welcome!",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign Out",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete Account",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign Out",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 125
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "Are you sure you want to sign out?",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete Account",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "This action cannot be undone. This will permanently delete your account, remove you from all groups, and erase all your data.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 181
+        }
+      },
+      {
+        "comment": "",
+        "key": "Type your email",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 194
+        }
+      },
+      {
+        "comment": "",
+        "key": "Type",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 187
+        }
+      },
+      {
+        "comment": "",
+        "key": "to confirm:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 207
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delete Account",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 223
+        }
+      }
+    ]
+  },
+  "version": 1
+}

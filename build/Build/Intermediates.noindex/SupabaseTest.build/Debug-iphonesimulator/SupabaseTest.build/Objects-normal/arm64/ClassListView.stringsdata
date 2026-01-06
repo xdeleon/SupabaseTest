@@ -1,0 +1,80 @@
+{
+  "source": "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/Classes/ClassListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Classes",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Error",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tap the + button to create your first class.",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "No Classes",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign Out",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Syncing...",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld students",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 106
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 111
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,23 @@
+{
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/SourcePackages/checkouts/supabase-swift/Sources/Auth/Internal/FixedWidthInteger+Random.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/FixedWidthInteger+Random.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/FixedWidthInteger+Random.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/FixedWidthInteger+Random.dia",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/FixedWidthInteger+Random.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/FixedWidthInteger+Random.swiftdeps"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/SourcePackages/checkouts/supabase-swift/Sources/Auth/Internal/Helpers.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/Helpers.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/Helpers.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/Helpers.dia",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/Helpers.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/Helpers.swiftdeps"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/SourcePackages/checkouts/supabase-swift/Sources/Auth/Internal/JWK+RSA.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/JWK+RSA.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/JWK+RSA.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/JWK+RSA.dia",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/JWK+RSA.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Auth.build/Objects-normal/arm64/JWK+RSA.swiftdeps"
+  }
+}

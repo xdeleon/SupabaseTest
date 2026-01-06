@@ -1,0 +1,23 @@
+{
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/SourcePackages/checkouts/supabase-swift/Sources/Realtime/Exports.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/Exports.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/Exports.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/Exports.dia",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/Exports.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/Exports.swiftdeps"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/SourcePackages/checkouts/supabase-swift/Sources/Realtime/PostgresAction.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresAction.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresAction.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresAction.dia",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresAction.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresAction.swiftdeps"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/SourcePackages/checkouts/supabase-swift/Sources/Realtime/PostgresActionData.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresActionData.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresActionData.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresActionData.dia",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresActionData.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/Supabase.build/Debug-iphonesimulator/Realtime.build/Objects-normal/arm64/PostgresActionData.swiftdeps"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "source": "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/SignUpView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Sign Up",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Check Your Email",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "Create Account",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign up to get started",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Email",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Password",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "Confirm Password",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Create Account",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Already have an account?",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "Sign In",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 121
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 133
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(wc:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(xcrun simctl boot:*)",
+      "Bash(open:*)",
+      "Bash(xcrun simctl install:*)",
+      "Bash(xcrun simctl launch:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "Bash(find:*)",
+      "Bash(claude mcp add supabase --transport stdio --scope project -- npx -y @supabase/mcp-server-postgrest@latest --apiUrl \"https://kmmbpjedcculmlblddet.supabase.co/rest/v1\" --apiKey \"sb_secret_MU-XSRPiBcE6yq_5iYT31Q_FISRFjeG\")",
+      "WebSearch",
+      "Bash(claude mcp remove:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(claude mcp add:*)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__apply_migration",
+      "mcp__supabase__get_logs",
+      "mcp__supabase__execute_sql"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase"
+  ]
+}

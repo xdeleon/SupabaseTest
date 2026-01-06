@@ -1,0 +1,16 @@
+{
+  "source": "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/SupabaseTestApp.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Loading...",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 62
+        }
+      }
+    ]
+  },
+  "version": 1
+}

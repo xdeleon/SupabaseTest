@@ -1,0 +1,64 @@
+{
+  "source": "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/Classes/ClassDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Error",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 72
+        }
+      },
+      {
+        "comment": "",
+        "key": "Class Info",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Students (%lld)",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "No students yet",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add Student",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Edit Class",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 73
+        }
+      }
+    ]
+  },
+  "version": 1
+}

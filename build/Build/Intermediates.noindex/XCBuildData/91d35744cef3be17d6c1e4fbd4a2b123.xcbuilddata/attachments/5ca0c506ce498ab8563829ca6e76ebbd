@@ -1,0 +1,109 @@
+{
+  "" : {
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTest-primary.dia",
+    "emit-module-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTest-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTest-primary-emit-module.dia",
+    "pch" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTest-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTest-primary.swiftdeps"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/AuthManager.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/AuthManager~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/ContentView.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Supabase.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/Supabase~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/SupabaseTestApp.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SupabaseTestApp~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/ForgotPasswordView.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ForgotPasswordView~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/LoginView.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/LoginView~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/MainView.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/MainView~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/ResendVerificationView.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/ResendVerificationView~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/SupabaseTest/Views/SignUpView.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/SignUpView~partial.swiftmodule"
+  },
+  "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/xdeleon/Developer/Scorebook (SwiftUI)/SupabaseTest/SupabaseTest/build/Build/Intermediates.noindex/SupabaseTest.build/Debug-iphonesimulator/SupabaseTest.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

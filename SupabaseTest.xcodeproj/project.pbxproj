@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FD30CDC22F0B83AD0084A1A4 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = FD30CDC12F0B83AD0084A1A4 /* Auth */; };
+		FD30CDC42F0B83AD0084A1A4 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = FD30CDC32F0B83AD0084A1A4 /* Functions */; };
+		FD30CDC62F0B83AD0084A1A4 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = FD30CDC52F0B83AD0084A1A4 /* Realtime */; };
+		FD30CDC82F0B83AD0084A1A4 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = FD30CDC72F0B83AD0084A1A4 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FD30CDB22F0B83530084A1A4 /* SupabaseTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SupabaseTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +30,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD30CDC62F0B83AD0084A1A4 /* Realtime in Frameworks */,
+				FD30CDC42F0B83AD0084A1A4 /* Functions in Frameworks */,
+				FD30CDC22F0B83AD0084A1A4 /* Auth in Frameworks */,
+				FD30CDC82F0B83AD0084A1A4 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +76,10 @@
 			);
 			name = SupabaseTest;
 			packageProductDependencies = (
+				FD30CDC12F0B83AD0084A1A4 /* Auth */,
+				FD30CDC32F0B83AD0084A1A4 /* Functions */,
+				FD30CDC52F0B83AD0084A1A4 /* Realtime */,
+				FD30CDC72F0B83AD0084A1A4 /* Supabase */,
 			);
 			productName = SupabaseTest;
 			productReference = FD30CDB22F0B83530084A1A4 /* SupabaseTest.app */;
@@ -94,6 +109,9 @@
 			);
 			mainGroup = FD30CDA92F0B83530084A1A4;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FD30CDC02F0B83AD0084A1A4 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FD30CDB32F0B83530084A1A4 /* Products */;
 			projectDirPath = "";
@@ -248,7 +266,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J6WS485C6Q;
+				DEVELOPMENT_TEAM = 79PT85H523;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -264,12 +282,13 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bb1.SupabaseTest;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.supabasetest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -292,7 +311,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J6WS485C6Q;
+				DEVELOPMENT_TEAM = 79PT85H523;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -308,12 +327,13 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bb1.SupabaseTest;
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.supabasetest1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -351,6 +371,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FD30CDC02F0B83AD0084A1A4 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.31.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FD30CDC12F0B83AD0084A1A4 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD30CDC02F0B83AD0084A1A4 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		FD30CDC32F0B83AD0084A1A4 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD30CDC02F0B83AD0084A1A4 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		FD30CDC52F0B83AD0084A1A4 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD30CDC02F0B83AD0084A1A4 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		FD30CDC72F0B83AD0084A1A4 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD30CDC02F0B83AD0084A1A4 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD30CDAA2F0B83530084A1A4 /* Project object */;
 }
