@@ -170,7 +170,7 @@ struct ClassRowView: View {
 
 #Preview {
     ClassListView()
-        .modelContainer(for: [SchoolClass.self, Student.self], inMemory: true)
+        .modelContainer(for: [SchoolClass.self, Student.self, PendingChange.self], inMemory: true)
         .environmentObject(SyncManager())
         .environmentObject(AuthManager())
 }

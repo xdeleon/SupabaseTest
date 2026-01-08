@@ -113,7 +113,12 @@ struct StudentRowView: View {
 }
 
 #Preview {
-    let container = try! ModelContainer(for: SchoolClass.self, Student.self, configurations: .init(isStoredInMemoryOnly: true))
+    let container = try! ModelContainer(
+        for: SchoolClass.self,
+        Student.self,
+        PendingChange.self,
+        configurations: .init(isStoredInMemoryOnly: true)
+    )
     let schoolClass = SchoolClass(name: "Math 101", notes: "Advanced calculus")
     container.mainContext.insert(schoolClass)
 

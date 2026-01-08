@@ -13,14 +13,30 @@
 		FD30CDC82F0B83AD0084A1A4 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = FD30CDC72F0B83AD0084A1A4 /* Supabase */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C9869E177C1842B3B1C9693D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD30CDAA2F0B83530084A1A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD30CDB12F0B83530084A1A4 /* SupabaseTest */;
+			remoteInfo = SupabaseTest;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		FD30CDB22F0B83530084A1A4 /* SupabaseTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SupabaseTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		846CFBFD935B4259A6117484 /* SupabaseTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupabaseTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FD30CDB42F0B83530084A1A4 /* SupabaseTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SupabaseTest;
+			sourceTree = "<group>";
+		};
+		4DF8B7D61A2D4F5686F710DD /* SupabaseTestTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SupabaseTestTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -37,6 +53,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6B6AD57A5B2C43D3885A1C48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -44,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				FD30CDB42F0B83530084A1A4 /* SupabaseTest */,
+				4DF8B7D61A2D4F5686F710DD /* SupabaseTestTests */,
 				FD30CDB32F0B83530084A1A4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				FD30CDB22F0B83530084A1A4 /* SupabaseTest.app */,
+				846CFBFD935B4259A6117484 /* SupabaseTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,6 +110,27 @@
 			productReference = FD30CDB22F0B83530084A1A4 /* SupabaseTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		605FC37C8E584A07B1EF4051 /* SupabaseTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5024B0F29FA245D1B94D84E7 /* Build configuration list for PBXNativeTarget "SupabaseTestTests" */;
+			buildPhases = (
+				2B3543F7A32A429A91ECE5AD /* Sources */,
+				6B6AD57A5B2C43D3885A1C48 /* Frameworks */,
+				935B463257584FBF9322821A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA66F895C5FF4F7483CEC883 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				4DF8B7D61A2D4F5686F710DD /* SupabaseTestTests */,
+			);
+			name = SupabaseTestTests;
+			productName = SupabaseTestTests;
+			productReference = 846CFBFD935B4259A6117484 /* SupabaseTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -97,6 +143,10 @@
 				TargetAttributes = {
 					FD30CDB12F0B83530084A1A4 = {
 						CreatedOnToolsVersion = 26.2;
+					};
+					605FC37C8E584A07B1EF4051 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = FD30CDB12F0B83530084A1A4;
 					};
 				};
 			};
@@ -118,12 +168,20 @@
 			projectRoot = "";
 			targets = (
 				FD30CDB12F0B83530084A1A4 /* SupabaseTest */,
+				605FC37C8E584A07B1EF4051 /* SupabaseTestTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FD30CDB02F0B83530084A1A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		935B463257584FBF9322821A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -140,7 +198,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2B3543F7A32A429A91ECE5AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CA66F895C5FF4F7483CEC883 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD30CDB12F0B83530084A1A4 /* SupabaseTest */;
+			targetProxy = C9869E177C1842B3B1C9693D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		FD30CDBB2F0B83550084A1A4 /* Debug */ = {
@@ -349,6 +422,68 @@
 			};
 			name = Release;
 		};
+		DCB2D15FE6D448E8ADF61EA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79PT85H523;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bb1.SupabaseTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				"BUNDLE_LOADER[sdk=iphoneos*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=iphonesimulator*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=macosx*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=xros*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=xrsimulator*]" = "$(TEST_HOST)";
+				"TEST_HOST[sdk=iphoneos*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+				"TEST_HOST[sdk=iphonesimulator*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/Contents/MacOS/SupabaseTest";
+				"TEST_HOST[sdk=xros*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+				"TEST_HOST[sdk=xrsimulator*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+			};
+			name = Debug;
+		};
+		7860561249AE461393747F24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79PT85H523;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bb1.SupabaseTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				"BUNDLE_LOADER[sdk=iphoneos*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=iphonesimulator*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=macosx*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=xros*]" = "$(TEST_HOST)";
+				"BUNDLE_LOADER[sdk=xrsimulator*]" = "$(TEST_HOST)";
+				"TEST_HOST[sdk=iphoneos*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+				"TEST_HOST[sdk=iphonesimulator*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+				"TEST_HOST[sdk=macosx*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/Contents/MacOS/SupabaseTest";
+				"TEST_HOST[sdk=xros*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+				"TEST_HOST[sdk=xrsimulator*]" = "$(BUILT_PRODUCTS_DIR)/SupabaseTest.app/SupabaseTest";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -366,6 +501,15 @@
 			buildConfigurations = (
 				FD30CDBE2F0B83550084A1A4 /* Debug */,
 				FD30CDBF2F0B83550084A1A4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5024B0F29FA245D1B94D84E7 /* Build configuration list for PBXNativeTarget "SupabaseTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DCB2D15FE6D448E8ADF61EA8 /* Debug */,
+				7860561249AE461393747F24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

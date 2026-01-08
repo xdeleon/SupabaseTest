@@ -19,7 +19,7 @@ struct SupabaseTestApp: App {
                 .environmentObject(authManager)
                 .environmentObject(syncManager)
         }
-        .modelContainer(for: [SchoolClass.self, Student.self])
+        .modelContainer(for: [SchoolClass.self, Student.self, PendingChange.self])
     }
 }
 

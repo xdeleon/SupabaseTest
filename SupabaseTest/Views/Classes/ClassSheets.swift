@@ -220,7 +220,12 @@ struct AddStudentSheet: View {
 }
 
 #Preview("Add Student") {
-    let container = try! ModelContainer(for: SchoolClass.self, Student.self, configurations: .init(isStoredInMemoryOnly: true))
+    let container = try! ModelContainer(
+        for: SchoolClass.self,
+        Student.self,
+        PendingChange.self,
+        configurations: .init(isStoredInMemoryOnly: true)
+    )
     let schoolClass = SchoolClass(name: "Math 101", notes: "")
     container.mainContext.insert(schoolClass)
 
