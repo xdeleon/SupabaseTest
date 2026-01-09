@@ -31,3 +31,8 @@ Copy the SchoolClass/Student pattern. Repetition is intentional.
 - Record mapping test (Supabase record -> local model).
 - Initial sync with mock RemoteStore.
 - Realtime insert handling.
+
+## User Switching
+- Clear all local SwiftData on logout
+- Clear PendingChange queue on logout
+- Each model does NOT store userId locally (we clear instead)

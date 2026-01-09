@@ -105,8 +105,6 @@ struct ClassListView: View {
             }
             .task {
                 syncManager.configure(modelContext: modelContext)
-                await syncManager.performInitialSync()
-                await syncManager.startRealtimeSync()
             }
         }
     }

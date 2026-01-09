@@ -5,7 +5,7 @@ import Combine
 @MainActor
 protocol NetworkMonitoring: AnyObject {
     var isConnected: Bool { get }
-    func setConnectivityRestoredHandler(_ handler: @escaping () async -> Void)
+    func setConnectivityRestoredHandler(_ handler: @escaping @MainActor () async -> Void)
 }
 
 @MainActor
@@ -23,7 +23,7 @@ final class NetworkMonitor: ObservableObject {
         case unknown
     }
 
-    private var onConnectivityRestored: (() async -> Void)?
+    private var onConnectivityRestored: (@MainActor () async -> Void)?
 
     init() {
         startMonitoring()
@@ -33,7 +33,7 @@ final class NetworkMonitor: ObservableObject {
         monitor.cancel()
     }
 
-    func setConnectivityRestoredHandler(_ handler: @escaping () async -> Void) {
+    func setConnectivityRestoredHandler(_ handler: @escaping @MainActor () async -> Void) {
         self.onConnectivityRestored = handler
     }
 

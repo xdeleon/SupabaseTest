@@ -7,11 +7,29 @@
 
 import SwiftUI
 import SwiftData
+import Auth
 
 @main
 struct SupabaseTestApp: App {
     @StateObject private var authManager = AuthManager()
     @StateObject private var syncManager = SyncManager()
+    private let modelContainer: ModelContainer
+
+    private static let modelConfigurationName = "SupabaseTest"
+    private static let schema = Schema([
+        SchoolClass.self,
+        Student.self,
+        PendingChange.self
+    ])
+
+    init() {
+        let configuration = ModelConfiguration(Self.modelConfigurationName, schema: Self.schema)
+        do {
+            modelContainer = try ModelContainer(for: Self.schema, configurations: configuration)
+        } catch {
+            fatalError("Could not configure SwiftData container: \(error)")
+        }
+    }
 
     var body: some Scene {
         WindowGroup {
@@ -19,13 +37,15 @@ struct SupabaseTestApp: App {
                 .environmentObject(authManager)
                 .environmentObject(syncManager)
         }
-        .modelContainer(for: [SchoolClass.self, Student.self, PendingChange.self])
+        .modelContainer(modelContainer)
     }
 }
 
 struct RootView: View {
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var authManager: AuthManager
     @EnvironmentObject private var syncManager: SyncManager
+    @State private var lastUserId: UUID?
 
     var body: some View {
         Group {
@@ -39,6 +59,14 @@ struct RootView: View {
             }
         }
         .animation(.easeInOut, value: authStateKey)
+        .task {
+            await handleAuthChange()
+        }
+        .onChange(of: authUserId) { _, _ in
+            Task {
+                await handleAuthChange()
+            }
+        }
     }
 
     private var authStateKey: String {
@@ -50,6 +78,30 @@ struct RootView: View {
         case .unauthenticated:
             return "unauthenticated"
         }
+    }
+
+    private var authUserId: UUID? {
+        if case .authenticated(let user) = authManager.authState {
+            return user.id
+        }
+        return nil
+    }
+
+    private func handleAuthChange() async {
+        syncManager.configure(modelContext: modelContext)
+
+        let currentUserId = authUserId
+        guard currentUserId != lastUserId else { return }
+
+        if lastUserId != nil {
+            await syncManager.handleUserChange()
+        }
+
+        lastUserId = currentUserId
+        guard currentUserId != nil else { return }
+
+        await syncManager.performInitialSync()
+        await syncManager.startRealtimeSync()
     }
 }
 

@@ -135,12 +135,16 @@ final class SyncManagerTests: XCTestCase {
 
 @MainActor
 final class TestNetworkMonitor: NetworkMonitoring {
-    var isConnected: Bool
+    private let connected: Bool
 
-    init(isConnected: Bool) {
-        self.isConnected = isConnected
+    var isConnected: Bool {
+        connected
     }
 
-    func setConnectivityRestoredHandler(_ handler: @escaping () async -> Void) {
+    init(isConnected: Bool) {
+        self.connected = isConnected
+    }
+
+    func setConnectivityRestoredHandler(_ handler: @escaping @MainActor () async -> Void) {
     }
 }

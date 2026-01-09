@@ -16,6 +16,7 @@ final class SyncManager: ObservableObject {
     private let userIdProvider: UserIdProvider
     private let pendingChangeApplier: PendingChangeApplier
     private var isProcessingQueue = false
+    private var syncEpoch = UUID()
 
     @Published var isSyncing = false
     @Published var lastSyncError: String?
@@ -23,29 +24,29 @@ final class SyncManager: ObservableObject {
 
     private static let decoder: JSONDecoder = {
         let decoder = JSONDecoder()
-        // Supabase sends dates with fractional seconds, need custom formatter
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        decoder.dateDecodingStrategy = .custom { decoder in
-            let container = try decoder.singleValueContainer()
-            let dateString = try container.decode(String.self)
-
-            // Try with fractional seconds first
-            if let date = formatter.date(from: dateString) {
-                return date
-            }
-
-            // Fallback to without fractional seconds
-            formatter.formatOptions = [.withInternetDateTime]
-            if let date = formatter.date(from: dateString) {
-                return date
-            }
-
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date: \(dateString)")
-        }
+        decoder.dateDecodingStrategy = .custom(SyncManager.decodeSupabaseDate)
         return decoder
     }()
     private static let encoder = JSONEncoder()
+
+    private nonisolated static func decodeSupabaseDate(_ decoder: Decoder) throws -> Date {
+        let container = try decoder.singleValueContainer()
+        let dateString = try container.decode(String.self)
+
+        // Supabase sends dates with fractional seconds; try that first.
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let date = formatter.date(from: dateString) {
+            return date
+        }
+
+        formatter.formatOptions = [.withInternetDateTime]
+        if let date = formatter.date(from: dateString) {
+            return date
+        }
+
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date: \(dateString)")
+    }
 
     private enum EntityType: String {
         case schoolClass = "class"
@@ -90,6 +91,39 @@ final class SyncManager: ObservableObject {
         await processPendingChanges()
         await performInitialSync()
         await startRealtimeSync()
+    }
+
+    func handleUserChange() async {
+        guard let context = modelContext else { return }
+        syncEpoch = UUID()
+        isProcessingQueue = false
+        isSyncing = false
+        lastSyncError = nil
+
+        await stopRealtimeSync()
+
+        do {
+            let students = try context.fetch(FetchDescriptor<Student>())
+            for student in students {
+                context.delete(student)
+            }
+
+            let classes = try context.fetch(FetchDescriptor<SchoolClass>())
+            for schoolClass in classes {
+                context.delete(schoolClass)
+            }
+
+            let pendingChanges = try context.fetch(FetchDescriptor<PendingChange>())
+            for change in pendingChanges {
+                context.delete(change)
+            }
+
+            try context.save()
+            lastUpdate = Date()
+        } catch {
+            print("[Sync] Failed to clear local data: \(error)")
+            lastSyncError = "Failed to clear local data: \(error.localizedDescription)"
+        }
     }
 
     private func requireUserId() async throws -> UUID {
@@ -157,6 +191,7 @@ final class SyncManager: ObservableObject {
         guard networkMonitor.isConnected else { return }
         guard !isProcessingQueue else { return }
 
+        let epoch = syncEpoch
         let shouldToggleSyncState = !isSyncing
         if shouldToggleSyncState {
             isSyncing = true
@@ -178,10 +213,13 @@ final class SyncManager: ObservableObject {
 
             let orderedChanges = orderedPendingChanges(pendingChanges)
             let currentUserId = try await requireUserId()
+            guard epoch == syncEpoch else { return }
 
             for change in orderedChanges {
+                guard epoch == syncEpoch else { return }
                 do {
                     try await pendingChangeApplier(change, currentUserId)
+                    guard epoch == syncEpoch else { return }
                     context.delete(change)
                     try context.save()
                 } catch {
@@ -191,6 +229,9 @@ final class SyncManager: ObservableObject {
                 }
             }
         } catch {
+            if case SyncError.noSession = error {
+                return
+            }
             lastSyncError = "Failed to process pending changes: \(error.localizedDescription)"
         }
     }
@@ -317,7 +358,13 @@ final class SyncManager: ObservableObject {
         }
 
         // Subscribe to the channel and monitor status
-        await channel.subscribe()
+        do {
+            try await channel.subscribeWithError()
+        } catch {
+            lastSyncError = "Realtime subscribe failed: \(error.localizedDescription)"
+            print("[Realtime] Failed to subscribe: \(error)")
+            return
+        }
 
         // Monitor channel status
         Task {
@@ -674,13 +721,18 @@ final class SyncManager: ObservableObject {
             return
         }
         isSyncing = true
+        let epoch = syncEpoch
+        defer { isSyncing = false }
 
         do {
-            await processPendingChanges()
-            let userId = try await requireUserId()
             let pendingChanges = try context.fetch(FetchDescriptor<PendingChange>())
             let pendingClassIds = pendingEntityIds(from: pendingChanges, entityType: .schoolClass)
             let pendingStudentIds = pendingEntityIds(from: pendingChanges, entityType: .student)
+
+            await processPendingChanges()
+            guard epoch == syncEpoch else { return }
+            let userId = try await requireUserId()
+            guard epoch == syncEpoch else { return }
 
             // Fetch classes from Supabase
             let classRecords: [ClassRecord] = try await supabase
@@ -689,6 +741,7 @@ final class SyncManager: ObservableObject {
                 .eq("user_id", value: userId.uuidString)
                 .execute()
                 .value
+            guard epoch == syncEpoch else { return }
 
             // Fetch students from Supabase
             let studentRecords: [StudentRecord] = try await supabase
@@ -697,6 +750,7 @@ final class SyncManager: ObservableObject {
                 .eq("user_id", value: userId.uuidString)
                 .execute()
                 .value
+            guard epoch == syncEpoch else { return }
 
             try applyInitialSync(
                 classRecords: classRecords,
@@ -706,10 +760,11 @@ final class SyncManager: ObservableObject {
                 context: context
             )
         } catch {
+            if case SyncError.noSession = error {
+                return
+            }
             lastSyncError = "Initial sync failed: \(error.localizedDescription)"
         }
-
-        isSyncing = false
     }
 
     // MARK: - CRUD Operations (local-first with queued sync)
