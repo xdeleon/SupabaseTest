@@ -98,6 +98,53 @@ final class SyncManagerTests: XCTestCase {
         XCTAssertEqual(student.schoolClass?.id, classId)
     }
 
+    func testApplyInitialSyncSoftDeletesClassAndStudents() async throws {
+        let container = try makeContainer()
+        let context = container.mainContext
+        let syncManager = makeSyncManager()
+        syncManager.configure(modelContext: context)
+
+        let classId = UUID()
+        let studentId = UUID()
+        let now = Date(timeIntervalSince1970: 1_700_000_000)
+        let schoolClass = SchoolClass(id: classId, name: "History", notes: "", createdAt: now, updatedAt: now)
+        let student = Student(id: studentId, name: "Grace Hopper", notes: "", classId: classId, createdAt: now, updatedAt: now)
+        student.schoolClass = schoolClass
+        context.insert(schoolClass)
+        context.insert(student)
+        try context.save()
+
+        let deletedAt = Date(timeIntervalSince1970: 1_700_000_500)
+        let userId = UUID()
+        let classRecord = ClassRecord(
+            id: classId,
+            name: "History",
+            notes: "",
+            userId: userId,
+            createdAt: now,
+            updatedAt: deletedAt,
+            deletedAt: deletedAt
+        )
+
+        try syncManager.applyInitialSync(
+            classRecords: [classRecord],
+            studentRecords: [],
+            pendingClassIds: [],
+            pendingStudentIds: [],
+            context: context
+        )
+
+        let classFetch = FetchDescriptor<SchoolClass>(predicate: #Predicate { $0.id == classId })
+        let classes = try context.fetch(classFetch)
+        let updatedClass = try XCTUnwrap(classes.first)
+        XCTAssertEqual(updatedClass.deletedAt, deletedAt)
+
+        let studentFetch = FetchDescriptor<Student>(predicate: #Predicate { $0.id == studentId })
+        let students = try context.fetch(studentFetch)
+        let updatedStudent = try XCTUnwrap(students.first)
+        XCTAssertEqual(updatedStudent.deletedAt, deletedAt)
+    }
+
     func testRealtimeClassInsertSkipsPendingChange() async throws {
         let container = try makeContainer()
         let context = container.mainContext

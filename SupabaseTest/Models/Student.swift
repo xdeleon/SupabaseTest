@@ -9,6 +9,7 @@ final class Student {
     var classId: UUID
     var createdAt: Date
     var updatedAt: Date
+    var deletedAt: Date?
 
     var schoolClass: SchoolClass?
 
@@ -18,7 +19,8 @@ final class Student {
         notes: String = "",
         classId: UUID,
         createdAt: Date = Date(),
-        updatedAt: Date = Date()
+        updatedAt: Date = Date(),
+        deletedAt: Date? = nil
     ) {
         self.id = id
         self.name = name
@@ -26,13 +28,14 @@ final class Student {
         self.classId = classId
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.deletedAt = deletedAt
     }
 }
 
 extension Student {
     /// Convert to dictionary for Supabase
     var supabaseData: [String: Any] {
-        [
+        var data: [String: Any] = [
             "id": id.uuidString,
             "name": name,
             "notes": notes,
@@ -40,5 +43,9 @@ extension Student {
             "created_at": ISO8601DateFormatter().string(from: createdAt),
             "updated_at": ISO8601DateFormatter().string(from: updatedAt)
         ]
+        if let deletedAt {
+            data["deleted_at"] = ISO8601DateFormatter().string(from: deletedAt)
+        }
+        return data
     }
 }

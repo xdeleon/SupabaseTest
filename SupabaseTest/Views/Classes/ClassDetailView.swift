@@ -6,6 +6,7 @@ struct ClassDetailView: View {
     @EnvironmentObject private var syncManager: SyncManager
 
     @Bindable var schoolClass: SchoolClass
+    @State private var students: [Student] = []
 
     @State private var showAddStudent = false
     @State private var showEditClass = false
@@ -29,20 +30,19 @@ struct ClassDetailView: View {
                 .padding(.vertical, 4)
             }
 
-            Section("Students (\(schoolClass.students.count))") {
-                if schoolClass.students.isEmpty {
+            Section("Students (\(students.count))") {
+                if students.isEmpty {
                     Text("No students yet")
                         .foregroundStyle(.secondary)
                         .italic()
                 } else {
-                    ForEach(schoolClass.students.sorted(by: { $0.name < $1.name })) { student in
+                    ForEach(students) { student in
                         StudentRowView(student: student)
                     }
                     .onDelete(perform: deleteStudents)
                 }
             }
         }
-        .id(syncManager.lastUpdate)  // Force refresh when realtime updates come in
         .navigationTitle(schoolClass.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -75,13 +75,33 @@ struct ClassDetailView: View {
         } message: {
             Text(errorMessage)
         }
+        .task {
+            reloadStudents()
+        }
+        .onChange(of: syncManager.lastUpdate) { _, _ in
+            reloadStudents()
+        }
+    }
+
+    @MainActor
+    private func reloadStudents() {
+        let classId = schoolClass.id
+        let fetchDescriptor = FetchDescriptor<Student>(
+            predicate: #Predicate<Student> { $0.classId == classId && $0.deletedAt == nil },
+            sortBy: [SortDescriptor(\.name)]
+        )
+        do {
+            students = try modelContext.fetch(fetchDescriptor)
+        } catch {
+            errorMessage = "Failed to load students: \(error.localizedDescription)"
+            showError = true
+        }
     }
 
     private func deleteStudents(at offsets: IndexSet) {
-        let sortedStudents = schoolClass.students.sorted(by: { $0.name < $1.name })
-        Task {
-            for index in offsets {
-                let student = sortedStudents[index]
+        let targets = offsets.map { students[$0] }
+        Task { @MainActor in
+            for student in targets {
                 do {
                     try await syncManager.deleteStudent(student)
                 } catch {

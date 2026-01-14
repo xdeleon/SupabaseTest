@@ -36,6 +36,7 @@ struct ClassPayload: Codable {
     let name: String
     let notes: String
     let userId: UUID
+    let deletedAt: Date?
 }
 
 struct StudentPayload: Codable {
@@ -44,4 +45,5 @@ struct StudentPayload: Codable {
     let notes: String
     let classId: UUID
     let userId: UUID
+    let deletedAt: Date?
 }

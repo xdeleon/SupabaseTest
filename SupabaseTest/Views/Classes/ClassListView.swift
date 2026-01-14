@@ -6,11 +6,10 @@ struct ClassListView: View {
     @EnvironmentObject private var syncManager: SyncManager
     @EnvironmentObject private var authManager: AuthManager
 
-    @Query(sort: \SchoolClass.name) private var classes: [SchoolClass]
-
     @State private var showAddClass = false
     @State private var showError = false
     @State private var errorMessage = ""
+    @State private var classes: [SchoolClass] = []
 
     private let sampleClasses = [
         ("Math 101", "Introduction to Algebra"),
@@ -55,7 +54,6 @@ struct ClassListView: View {
                     }
                 }
             }
-            .id(syncManager.lastUpdate)  // Force refresh when realtime updates come in
             .navigationTitle("Classes")
             .navigationDestination(for: SchoolClass.self) { schoolClass in
                 ClassDetailView(schoolClass: schoolClass)
@@ -105,14 +103,32 @@ struct ClassListView: View {
             }
             .task {
                 syncManager.configure(modelContext: modelContext)
+                reloadClasses()
+            }
+            .onChange(of: syncManager.lastUpdate) { _, _ in
+                reloadClasses()
             }
         }
     }
 
+    @MainActor
+    private func reloadClasses() {
+        let fetchDescriptor = FetchDescriptor<SchoolClass>(
+            predicate: #Predicate<SchoolClass> { $0.deletedAt == nil },
+            sortBy: [SortDescriptor(\.name)]
+        )
+        do {
+            classes = try modelContext.fetch(fetchDescriptor)
+        } catch {
+            errorMessage = "Failed to load classes: \(error.localizedDescription)"
+            showError = true
+        }
+    }
+
     private func deleteClasses(at offsets: IndexSet) {
-        Task {
-            for index in offsets {
-                let schoolClass = classes[index]
+        let targets = offsets.map { classes[$0] }
+        Task { @MainActor in
+            for schoolClass in targets {
                 do {
                     try await syncManager.deleteClass(schoolClass)
                 } catch {
@@ -148,7 +164,7 @@ struct ClassRowView: View {
                 .font(.headline)
 
             HStack {
-                Text("\(schoolClass.students.count) students")
+                Text("\(schoolClass.activeStudents.count) students")
                     .font(.caption)
                     .foregroundStyle(.secondary)
 

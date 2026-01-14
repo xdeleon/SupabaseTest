@@ -27,7 +27,11 @@ final class SyncManager: ObservableObject {
         decoder.dateDecodingStrategy = .custom(SyncManager.decodeSupabaseDate)
         return decoder
     }()
-    private static let encoder = JSONEncoder()
+    private static let encoder: JSONEncoder = {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        return encoder
+    }()
 
     private nonisolated static func decodeSupabaseDate(_ decoder: Decoder) throws -> Date {
         let container = try decoder.singleValueContainer()
@@ -167,6 +171,69 @@ final class SyncManager: ObservableObject {
         }
     }
 
+    private func removePendingChanges(
+        entityType: EntityType,
+        entityId: UUID,
+        context: ModelContext
+    ) {
+        let typeValue = entityType.rawValue
+        let idValue = entityId
+        let fetchDescriptor = FetchDescriptor<PendingChange>(
+            predicate: #Predicate<PendingChange> {
+                $0.entityType == typeValue && $0.entityId == idValue
+            }
+        )
+
+        do {
+            let pendingChanges = try context.fetch(fetchDescriptor)
+            for change in pendingChanges {
+                context.delete(change)
+            }
+        } catch {
+            print("[Sync] Failed to remove pending changes: \(error)")
+        }
+    }
+
+    private func removePendingStudentChanges(for classId: UUID, context: ModelContext) {
+        let studentType = EntityType.student.rawValue
+        let fetchDescriptor = FetchDescriptor<PendingChange>(
+            predicate: #Predicate<PendingChange> {
+                $0.entityType == studentType
+            }
+        )
+
+        do {
+            let pendingChanges = try context.fetch(fetchDescriptor)
+            for change in pendingChanges {
+                do {
+                    let payload = try Self.decoder.decode(StudentPayload.self, from: change.payload)
+                    if payload.classId == classId {
+                        context.delete(change)
+                    }
+                } catch {
+                    print("[Sync] Failed to decode pending student change: \(error)")
+                }
+            }
+        } catch {
+            print("[Sync] Failed to remove pending student changes: \(error)")
+        }
+    }
+
+    private func isClassDeleted(_ classId: UUID, context: ModelContext) -> Bool {
+        let fetchDescriptor = FetchDescriptor<SchoolClass>(
+            predicate: #Predicate<SchoolClass> { $0.id == classId }
+        )
+
+        do {
+            if let schoolClass = try context.fetch(fetchDescriptor).first {
+                return schoolClass.deletedAt != nil
+            }
+        } catch {
+            print("[Sync] Failed to check class delete status: \(error)")
+        }
+        return false
+    }
+
     private func pendingEntityIds(
         from changes: [PendingChange],
         entityType: EntityType
@@ -273,9 +340,13 @@ final class SyncManager: ObservableObject {
                     .eq("id", value: payload.id.uuidString)
                     .execute()
             case .delete:
+                let deletedAt = payload.deletedAt ?? Date()
+                let deletedAtString = ISO8601DateFormatter().string(from: deletedAt)
                 try await supabase
                     .from("classes")
-                    .delete()
+                    .update([
+                        "deleted_at": deletedAtString
+                    ])
                     .eq("id", value: payload.id.uuidString)
                     .execute()
             }
@@ -308,9 +379,13 @@ final class SyncManager: ObservableObject {
                     .eq("id", value: payload.id.uuidString)
                     .execute()
             case .delete:
+                let deletedAt = payload.deletedAt ?? Date()
+                let deletedAtString = ISO8601DateFormatter().string(from: deletedAt)
                 try await supabase
                     .from("students")
-                    .delete()
+                    .update([
+                        "deleted_at": deletedAtString
+                    ])
                     .eq("id", value: payload.id.uuidString)
                     .execute()
             }
@@ -398,6 +473,15 @@ final class SyncManager: ObservableObject {
             case .update(let action):
                 let record = try action.decodeRecord(as: ClassRecord.self, decoder: Self.decoder)
                 guard record.userId == userId else { return }
+                if let deletedAt = record.deletedAt {
+                    if hasPendingChange(entityType: .schoolClass, entityId: record.id, context: context) {
+                        lastSyncError = "Conflict: class deleted remotely while local changes were pending."
+                        removePendingChanges(entityType: .schoolClass, entityId: record.id, context: context)
+                    }
+                    removePendingStudentChanges(for: record.id, context: context)
+                    await softDeleteClassLocally(record.id, deletedAt: deletedAt, context: context)
+                    return
+                }
                 if hasPendingChange(entityType: .schoolClass, entityId: record.id, context: context) {
                     print("[Realtime] Class UPDATE skipped - pending local change")
                     return
@@ -413,10 +497,11 @@ final class SyncManager: ObservableObject {
                 print("[Realtime] Class DELETE: \(payload.id)")
                 // No user filter needed - if it exists locally, it belongs to this user
                 if hasPendingChange(entityType: .schoolClass, entityId: payload.id, context: context) {
-                    print("[Realtime] Class DELETE skipped - pending local change")
-                    return
+                    lastSyncError = "Conflict: class deleted remotely while local changes were pending."
+                    removePendingChanges(entityType: .schoolClass, entityId: payload.id, context: context)
                 }
-                await deleteClassLocally(payload.id, context: context)
+                removePendingStudentChanges(for: payload.id, context: context)
+                await softDeleteClassLocally(payload.id, deletedAt: Date(), context: context)
             }
         } catch {
             print("[Realtime] Error handling class change: \(error)")
@@ -436,6 +521,18 @@ final class SyncManager: ObservableObject {
             case .update(let action):
                 let record = try action.decodeRecord(as: StudentRecord.self, decoder: Self.decoder)
                 guard record.userId == userId else { return }
+                if let deletedAt = record.deletedAt {
+                    if hasPendingChange(entityType: .student, entityId: record.id, context: context) {
+                        lastSyncError = "Conflict: student deleted remotely while local changes were pending."
+                        removePendingChanges(entityType: .student, entityId: record.id, context: context)
+                    }
+                    await softDeleteStudentLocally(record.id, deletedAt: deletedAt, context: context)
+                    return
+                }
+                if isClassDeleted(record.classId, context: context) {
+                    print("[Realtime] Student UPDATE skipped - class is deleted")
+                    return
+                }
                 if hasPendingChange(entityType: .student, entityId: record.id, context: context) {
                     print("[Realtime] Student UPDATE skipped - pending local change")
                     return
@@ -451,10 +548,10 @@ final class SyncManager: ObservableObject {
                 print("[Realtime] Student DELETE: \(payload.id)")
                 // No user filter needed - if it exists locally, it belongs to this user
                 if hasPendingChange(entityType: .student, entityId: payload.id, context: context) {
-                    print("[Realtime] Student DELETE skipped - pending local change")
-                    return
+                    lastSyncError = "Conflict: student deleted remotely while local changes were pending."
+                    removePendingChanges(entityType: .student, entityId: payload.id, context: context)
                 }
-                await deleteStudentLocally(payload.id, context: context)
+                await softDeleteStudentLocally(payload.id, deletedAt: Date(), context: context)
             }
         } catch {
             print("[Realtime] Error handling student change: \(error)")
@@ -479,6 +576,10 @@ final class SyncManager: ObservableObject {
 
     func handleStudentInsertRecord(_ record: StudentRecord, userId: UUID, context: ModelContext) async {
         guard record.userId == userId else { return }
+        if isClassDeleted(record.classId, context: context) {
+            print("[Realtime] Student INSERT skipped - class is deleted")
+            return
+        }
         if hasPendingChange(entityType: .student, entityId: record.id, context: context) {
             print("[Realtime] Student INSERT skipped - pending local change")
             return
@@ -504,7 +605,8 @@ final class SyncManager: ObservableObject {
                     name: record.name,
                     notes: record.notes,
                     createdAt: record.createdAt,
-                    updatedAt: record.updatedAt
+                    updatedAt: record.updatedAt,
+                    deletedAt: record.deletedAt
                 )
                 context.insert(newClass)
                 try context.save()
@@ -526,9 +628,15 @@ final class SyncManager: ObservableObject {
 
         do {
             if let existingClass = try context.fetch(fetchDescriptor).first {
+                if existingClass.deletedAt != nil && record.deletedAt == nil {
+                    print("[Realtime] Class UPDATE skipped - local record is deleted")
+                    lastSyncError = "Conflict: class updated remotely after local deletion."
+                    return
+                }
                 existingClass.name = record.name
                 existingClass.notes = record.notes
                 existingClass.updatedAt = record.updatedAt
+                existingClass.deletedAt = record.deletedAt
                 try context.save()
                 lastUpdate = Date()  // Trigger UI refresh
                 print("[Realtime] Updated class locally: \(record.name)")
@@ -538,20 +646,32 @@ final class SyncManager: ObservableObject {
         }
     }
 
-    func deleteClassLocally(_ id: UUID, context: ModelContext) async {
+    func softDeleteClassLocally(_ id: UUID, deletedAt: Date, context: ModelContext) async {
         let fetchDescriptor = FetchDescriptor<SchoolClass>(
             predicate: #Predicate<SchoolClass> { $0.id == id }
         )
 
         do {
             if let existingClass = try context.fetch(fetchDescriptor).first {
-                context.delete(existingClass)
+                existingClass.deletedAt = deletedAt
+                existingClass.updatedAt = deletedAt
+
+                let classId = existingClass.id
+                let studentFetch = FetchDescriptor<Student>(
+                    predicate: #Predicate<Student> { $0.classId == classId }
+                )
+                let students = try context.fetch(studentFetch)
+                for student in students {
+                    student.deletedAt = deletedAt
+                    student.updatedAt = deletedAt
+                }
+
                 try context.save()
                 lastUpdate = Date()  // Trigger UI refresh
-                print("[Realtime] Deleted class locally: \(id)")
+                print("[Realtime] Soft-deleted class locally: \(id)")
             }
         } catch {
-            print("[Realtime] Error deleting class: \(error)")
+            print("[Realtime] Error soft-deleting class: \(error)")
         }
     }
 
@@ -570,7 +690,8 @@ final class SyncManager: ObservableObject {
                     notes: record.notes,
                     classId: record.classId,
                     createdAt: record.createdAt,
-                    updatedAt: record.updatedAt
+                    updatedAt: record.updatedAt,
+                    deletedAt: record.deletedAt
                 )
 
                 // Link to class
@@ -600,9 +721,15 @@ final class SyncManager: ObservableObject {
 
         do {
             if let existingStudent = try context.fetch(fetchDescriptor).first {
+                if existingStudent.deletedAt != nil && record.deletedAt == nil {
+                    print("[Realtime] Student UPDATE skipped - local record is deleted")
+                    lastSyncError = "Conflict: student updated remotely after local deletion."
+                    return
+                }
                 existingStudent.name = record.name
                 existingStudent.notes = record.notes
                 existingStudent.updatedAt = record.updatedAt
+                existingStudent.deletedAt = record.deletedAt
                 try context.save()
                 lastUpdate = Date()  // Trigger UI refresh
                 print("[Realtime] Updated student locally: \(record.name)")
@@ -612,20 +739,21 @@ final class SyncManager: ObservableObject {
         }
     }
 
-    func deleteStudentLocally(_ id: UUID, context: ModelContext) async {
+    func softDeleteStudentLocally(_ id: UUID, deletedAt: Date, context: ModelContext) async {
         let fetchDescriptor = FetchDescriptor<Student>(
             predicate: #Predicate<Student> { $0.id == id }
         )
 
         do {
             if let existingStudent = try context.fetch(fetchDescriptor).first {
-                context.delete(existingStudent)
+                existingStudent.deletedAt = deletedAt
+                existingStudent.updatedAt = deletedAt
                 try context.save()
                 lastUpdate = Date()  // Trigger UI refresh
-                print("[Realtime] Deleted student locally: \(id)")
+                print("[Realtime] Soft-deleted student locally: \(id)")
             }
         } catch {
-            print("[Realtime] Error deleting student: \(error)")
+            print("[Realtime] Error soft-deleting student: \(error)")
         }
     }
 
@@ -638,16 +766,42 @@ final class SyncManager: ObservableObject {
         pendingStudentIds: Set<UUID>,
         context: ModelContext
     ) throws {
+        var deletedClassIds = Set<UUID>()
         // Sync classes
         for record in classRecords {
-            if pendingClassIds.contains(record.id) {
-                continue
-            }
             let recordId = record.id
             let fetchDescriptor = FetchDescriptor<SchoolClass>(
                 predicate: #Predicate<SchoolClass> { $0.id == recordId }
             )
             let existing = try context.fetch(fetchDescriptor)
+            if let deletedAt = record.deletedAt {
+                deletedClassIds.insert(record.id)
+                if hasPendingChange(entityType: .schoolClass, entityId: record.id, context: context) {
+                    lastSyncError = "Conflict: class deleted remotely while local changes were pending."
+                    removePendingChanges(entityType: .schoolClass, entityId: record.id, context: context)
+                }
+                removePendingStudentChanges(for: record.id, context: context)
+
+                if let existingClass = existing.first {
+                    existingClass.deletedAt = deletedAt
+                    existingClass.updatedAt = record.updatedAt
+
+                    let classId = record.id
+                    let studentFetch = FetchDescriptor<Student>(
+                        predicate: #Predicate<Student> { $0.classId == classId }
+                    )
+                    let students = try context.fetch(studentFetch)
+                    for student in students {
+                        student.deletedAt = deletedAt
+                        student.updatedAt = record.updatedAt
+                    }
+                }
+                continue
+            }
+
+            if pendingClassIds.contains(record.id) {
+                continue
+            }
 
             if let existingClass = existing.first {
                 // Update if remote is newer
@@ -655,6 +809,7 @@ final class SyncManager: ObservableObject {
                     existingClass.name = record.name
                     existingClass.notes = record.notes
                     existingClass.updatedAt = record.updatedAt
+                    existingClass.deletedAt = nil
                 }
             } else {
                 // Insert new
@@ -663,7 +818,8 @@ final class SyncManager: ObservableObject {
                     name: record.name,
                     notes: record.notes,
                     createdAt: record.createdAt,
-                    updatedAt: record.updatedAt
+                    updatedAt: record.updatedAt,
+                    deletedAt: record.deletedAt
                 )
                 context.insert(newClass)
             }
@@ -671,14 +827,31 @@ final class SyncManager: ObservableObject {
 
         // Sync students
         for record in studentRecords {
-            if pendingStudentIds.contains(record.id) {
-                continue
-            }
             let recordId = record.id
             let fetchDescriptor = FetchDescriptor<Student>(
                 predicate: #Predicate<Student> { $0.id == recordId }
             )
             let existing = try context.fetch(fetchDescriptor)
+            if let deletedAt = record.deletedAt {
+                if hasPendingChange(entityType: .student, entityId: record.id, context: context) {
+                    lastSyncError = "Conflict: student deleted remotely while local changes were pending."
+                    removePendingChanges(entityType: .student, entityId: record.id, context: context)
+                }
+
+                if let existingStudent = existing.first {
+                    existingStudent.deletedAt = deletedAt
+                    existingStudent.updatedAt = record.updatedAt
+                }
+                continue
+            }
+
+            if deletedClassIds.contains(record.classId) {
+                continue
+            }
+
+            if pendingStudentIds.contains(record.id) {
+                continue
+            }
 
             if let existingStudent = existing.first {
                 // Update if remote is newer
@@ -686,6 +859,7 @@ final class SyncManager: ObservableObject {
                     existingStudent.name = record.name
                     existingStudent.notes = record.notes
                     existingStudent.updatedAt = record.updatedAt
+                    existingStudent.deletedAt = nil
                 }
             } else {
                 // Insert new
@@ -695,7 +869,8 @@ final class SyncManager: ObservableObject {
                     notes: record.notes,
                     classId: record.classId,
                     createdAt: record.createdAt,
-                    updatedAt: record.updatedAt
+                    updatedAt: record.updatedAt,
+                    deletedAt: record.deletedAt
                 )
 
                 // Link to class
@@ -712,6 +887,7 @@ final class SyncManager: ObservableObject {
         }
 
         try context.save()
+        lastUpdate = Date()
     }
 
     func performInitialSync() async {
@@ -780,7 +956,8 @@ final class SyncManager: ObservableObject {
             id: newClass.id,
             name: newClass.name,
             notes: newClass.notes,
-            userId: userId
+            userId: userId,
+            deletedAt: nil
         )
 
         context.insert(newClass)
@@ -792,6 +969,8 @@ final class SyncManager: ObservableObject {
             context: context
         )
         try context.save()
+        context.processPendingChanges()
+        lastUpdate = Date()
         Task {
             await processPendingChanges()
         }
@@ -810,7 +989,8 @@ final class SyncManager: ObservableObject {
             id: schoolClass.id,
             name: schoolClass.name,
             notes: schoolClass.notes,
-            userId: userId
+            userId: userId,
+            deletedAt: nil
         )
 
         enqueueChange(
@@ -821,6 +1001,8 @@ final class SyncManager: ObservableObject {
             context: context
         )
         try context.save()
+        context.processPendingChanges()
+        lastUpdate = Date()
         Task {
             await processPendingChanges()
         }
@@ -832,15 +1014,22 @@ final class SyncManager: ObservableObject {
         }
 
         let userId = try await requireUserId()
+        let deletedAt = Date()
+        schoolClass.deletedAt = deletedAt
+        schoolClass.updatedAt = deletedAt
+        for student in schoolClass.students {
+            student.deletedAt = deletedAt
+            student.updatedAt = deletedAt
+        }
         let payload = ClassPayload(
             id: schoolClass.id,
             name: schoolClass.name,
             notes: schoolClass.notes,
-            userId: userId
+            userId: userId,
+            deletedAt: deletedAt
         )
 
-        // Delete locally
-        context.delete(schoolClass)
+        removePendingStudentChanges(for: schoolClass.id, context: context)
         enqueueChange(
             entityType: .schoolClass,
             entityId: schoolClass.id,
@@ -849,6 +1038,8 @@ final class SyncManager: ObservableObject {
             context: context
         )
         try context.save()
+        context.processPendingChanges()
+        lastUpdate = Date()
         Task {
             await processPendingChanges()
         }
@@ -867,7 +1058,8 @@ final class SyncManager: ObservableObject {
             name: newStudent.name,
             notes: newStudent.notes,
             classId: newStudent.classId,
-            userId: userId
+            userId: userId,
+            deletedAt: nil
         )
 
         context.insert(newStudent)
@@ -879,6 +1071,8 @@ final class SyncManager: ObservableObject {
             context: context
         )
         try context.save()
+        context.processPendingChanges()
+        lastUpdate = Date()
         Task {
             await processPendingChanges()
         }
@@ -898,7 +1092,8 @@ final class SyncManager: ObservableObject {
             name: student.name,
             notes: student.notes,
             classId: student.classId,
-            userId: userId
+            userId: userId,
+            deletedAt: nil
         )
 
         enqueueChange(
@@ -909,6 +1104,8 @@ final class SyncManager: ObservableObject {
             context: context
         )
         try context.save()
+        context.processPendingChanges()
+        lastUpdate = Date()
         Task {
             await processPendingChanges()
         }
@@ -920,16 +1117,18 @@ final class SyncManager: ObservableObject {
         }
 
         let userId = try await requireUserId()
+        let deletedAt = Date()
+        student.deletedAt = deletedAt
+        student.updatedAt = deletedAt
         let payload = StudentPayload(
             id: student.id,
             name: student.name,
             notes: student.notes,
             classId: student.classId,
-            userId: userId
+            userId: userId,
+            deletedAt: deletedAt
         )
 
-        // Delete locally
-        context.delete(student)
         enqueueChange(
             entityType: .student,
             entityId: student.id,
@@ -938,6 +1137,8 @@ final class SyncManager: ObservableObject {
             context: context
         )
         try context.save()
+        context.processPendingChanges()
+        lastUpdate = Date()
         Task {
             await processPendingChanges()
         }
@@ -953,6 +1154,7 @@ struct ClassRecord: Codable {
     let userId: UUID
     let createdAt: Date
     let updatedAt: Date
+    let deletedAt: Date? = nil
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -961,6 +1163,7 @@ struct ClassRecord: Codable {
         case userId = "user_id"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case deletedAt = "deleted_at"
     }
 }
 
@@ -972,6 +1175,7 @@ struct StudentRecord: Codable {
     let userId: UUID
     let createdAt: Date
     let updatedAt: Date
+    let deletedAt: Date? = nil
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -981,6 +1185,7 @@ struct StudentRecord: Codable {
         case userId = "user_id"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case deletedAt = "deleted_at"
     }
 }
 
